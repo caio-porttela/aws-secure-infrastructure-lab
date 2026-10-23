@@ -1,73 +1,78 @@
 # AWS Secure Infrastructure Lab
 
-## Sobre o projeto
+Laboratório prático de infraestrutura em nuvem com Amazon Web Services (AWS), desenvolvido para estudar fundamentos de Cloud Engineering, segurança, redes, banco de dados e troubleshooting.
 
-Este projeto consiste em um laboratório prático de infraestrutura em nuvem utilizando Amazon Web Services (AWS), com foco em fundamentos de Cloud Engineering, segurança e administração de infraestrutura.
+O projeto documenta a construção e os testes de componentes AWS, com foco em compreender como os recursos se comunicam e como permissões e controles de rede influenciam a segurança da infraestrutura.
 
-O objetivo foi compreender como os serviços de rede, computação, armazenamento, banco de dados e controle de acesso se integram em uma arquitetura AWS.
+## Objetivos
 
-## Objetivos de aprendizagem
+- Estudar redes virtuais, sub-redes e conectividade na AWS.
+- Utilizar uma instância EC2 para administrar e testar recursos.
+- Conectar uma instância EC2 a um banco Amazon RDS for PostgreSQL.
+- Trabalhar com IAM Users, Groups, Roles e Policies.
+- Utilizar o AWS Systems Manager Session Manager para acessar a instância.
+- Configurar armazenamento no Amazon S3 e bloquear acesso público.
+- Investigar erros de autorização usando a AWS CLI.
+- Compreender criptografia, backups e snapshots de banco de dados.
 
-- Compreender os fundamentos de uma VPC e suas sub-redes.
-- Utilizar uma instância EC2 para acessar e administrar recursos.
-- Configurar acesso privado a um banco de dados RDS PostgreSQL.
-- Aplicar conceitos de IAM, roles, policies e princípio do menor privilégio.
-- Utilizar o AWS Systems Manager Session Manager para acessar uma instância sem depender de SSH aberto.
-- Trabalhar com armazenamento S3 e bloqueio de acesso público.
-- Testar conectividade de rede e permissões usando AWS CLI.
-- Compreender backups automáticos e snapshots de banco de dados.
-- Investigar erros de autorização e identificar suas causas.
+## Arquitetura e serviços
 
-## Serviços AWS utilizados
+- **Amazon VPC:** rede virtual dos recursos.
+- **Amazon EC2:** instância utilizada para executar comandos e acessar o banco.
+- **Amazon RDS for PostgreSQL:** banco de dados relacional gerenciado.
+- **Amazon S3:** armazenamento de objetos.
+- **AWS IAM:** gerenciamento de identidades e permissões.
+- **AWS Systems Manager Session Manager:** acesso administrativo à instância.
+- **Security Groups:** controle de tráfego de rede.
+- **AWS CLI:** consulta e administração de recursos por linha de comando.
 
-- Amazon VPC
-- Amazon EC2
-- Amazon RDS for PostgreSQL
-- Amazon S3
-- AWS IAM
-- AWS Systems Manager Session Manager
-- AWS CLI
+## Testes e resultados
 
-## Testes realizados
+Durante o laboratório, foram realizados os seguintes testes:
 
-- Conexão entre EC2 e RDS pela porta TCP 5432.
-- Verificação do comportamento das regras de Security Groups.
-- Conexão ao PostgreSQL por meio do cliente `psql`.
-- Criação e consulta de registros em uma tabela.
-- Validação de restrição de unicidade de e-mail.
-- Consulta de informações do RDS usando AWS CLI.
-- Investigação de erros `AccessDenied` relacionados a permissões IAM.
-- Criação de snapshot manual do banco de dados.
+- Conectividade TCP entre EC2 e RDS pela porta 5432.
+- Bloqueio e restabelecimento da conectividade ao alterar temporariamente uma regra de Security Group.
+- Conexão ao PostgreSQL usando `psql`.
+- Criação, consulta e inspeção da estrutura da tabela `usuarios`.
+- Validação da restrição de unicidade da coluna `email`.
+- Consulta de informações do RDS com a AWS CLI após revisar permissões IAM.
+- Investigação de erros `AccessDenied`.
+- Criação e verificação de um snapshot manual do RDS.
 
 ## Segurança
 
-Durante o laboratório foram estudados e aplicados conceitos como:
+O laboratório permitiu estudar e aplicar controles de segurança em diferentes camadas:
 
-- Controle de acesso por IAM.
-- Uso de IAM Roles para a instância EC2.
-- Princípio do menor privilégio.
-- Restrição de acesso ao banco de dados por Security Groups.
-- Criptografia do RDS.
-- Bloqueio de acesso público ao bucket S3.
-- Acesso administrativo à instância por Session Manager.
+- IAM para controlar permissões de identidades e serviços.
+- IAM Role associada à instância EC2.
+- Security Groups para restringir a comunicação com o banco.
+- Session Manager para acesso administrativo sem depender de SSH aberto.
+- Criptografia em repouso do RDS.
+- Bloqueio de acesso público no bucket S3.
 
-## Limitações do laboratório
+A configuração do grupo administrativo e as regras de rede devem ser revisadas antes de reutilizar o ambiente em um cenário real.
 
-O ambiente foi desenvolvido em uma conta AWS sujeita a limitações de créditos e do plano gratuito. Algumas configurações de backup e alterações de recursos não puderam ser concluídas devido às restrições da conta e às permissões disponíveis.
+## Documentação
 
-Nenhum recurso deve ser considerado validado sem a respectiva evidência de teste.
+- [Arquitetura](docs/arquitetura.md)
+- [Segurança](docs/seguranca.md)
+- [Testes e resultados](docs/testes.md)
 
-## Próximos passos
+## Limitações e próximos passos
 
-- Finalizar a documentação da arquitetura.
-- Registrar as configurações de segurança e os testes realizados.
-- Revisar os custos e o estado dos recursos AWS.
-- Evoluir para automação com Python, Git, Docker e CI/CD.
+O laboratório foi executado em uma conta AWS sujeita a limitações de créditos, recursos e permissões.
+
+- A restauração do snapshot ainda não foi testada.
+- O RDS estava configurado sem Multi-AZ; alta disponibilidade não foi validada.
+- Algumas alterações de backup foram limitadas pelas condições da conta.
+- O estado final das regras de rede e dos recursos deve ser revisado antes de considerar o ambiente encerrado.
+
+Próximos passos: revisar os custos e recursos ativos, conferir a configuração final de segurança e evoluir os estudos para automação com Python, Git, Docker, CI/CD e infraestrutura como código.
 
 ## Tecnologias
 
-`AWS` `EC2` `RDS` `PostgreSQL` `S3` `IAM` `VPC` `SSM` `AWS CLI`
+`AWS` `VPC` `EC2` `RDS` `PostgreSQL` `S3` `IAM` `SSM` `AWS CLI` `Git`
 
 ---
 
-Projeto de aprendizagem prática desenvolvido para aprofundar conhecimentos em Cloud Engineering, DevOps e Cloud Security.
+Projeto de aprendizagem prática voltado ao desenvolvimento de competências em Cloud Engineering, DevOps e Cloud Security.
