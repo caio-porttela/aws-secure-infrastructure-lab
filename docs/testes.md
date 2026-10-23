@@ -17,7 +17,7 @@ Registrar os testes realizados durante o laboratório para validar a conectivida
 Foi executado um teste de conectividade TCP a partir da instância EC2.
 
 ```bash
-timeout 5 bash -c '</dev/tcp/172.31.32.126/5432' \
+timeout 5 bash -c ':</dev/tcp/$RDSHOST/5432' \
   && echo "PORTA 5432 ABERTA" \
   || echo "PORTA 5432 FECHADA"
 ```
